@@ -1,0 +1,19 @@
+# To compile
+
+syntax : gcc -o [compiled file name] [name of .c file] 
+
+eg : gcc -o output p1.c
+
+
+         	   # Important note 
+		  -------------------
+Just use the executable "output" file as complied file name
+for all the programs. Each time its compiled the file gets
+overwritten. This was we don't need a compiled file for every 
+single .c file.
+
+# To run compiled file
+
+syntax : ./[compiled file name]
+
+eg : ./output
