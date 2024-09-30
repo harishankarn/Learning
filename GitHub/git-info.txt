@@ -1,0 +1,138 @@
+Instructions to use github & gitlab
+-------------------------------------
+
+step1: Download Git and Install for windows
+	link: http://git-scm.com/
+	
+	for Linux:
+	sudo apt-get install git
+
+step2: use "git --version" command in your terminal to check whether the git is installed or not if git
+	is installed you can able to see the version in terminal, In windows right click and you can see "git GUI here" and "git bash here" options. Use "git bash here" option it will give you bash terminal use that.
+
+step3: Now if you are using Git for the fist time in your pc you need to create ssh key only once and add that 	key to your Git account.
+	use this youtube Link to create and add ssh key: https://youtu.be/hLGvGBj_HiE
+
+step4: open file where you want to pull code from gitlab and right click and open "git bash here" in that location once you got that location in bit bash terminal
+
+step5: Now you can make a copy of that project in your pc using this cmd "git clone PASTE PROJECT REPO HTTP KEY HERE"
+
+step6:"git config --global user.name YOUR GIT USERNAME HERE"
+
+step7:"git config --global user.email YOUR GIT EMAIL HERE"
+
+
+step8: Now use "git init" cmd in git bash or terminal, this will create a .git hidden file in that location, no need to play with that hidden file just create and leave it.
+
+step9: Important! You should always create a local branch like feature-1,2... before you do any changes in the project. However aim is to keep local master branch clean so that from local master we can create multiple local branches and work on it.
+
+	example: "git branch feature-1" this will create a copy of master branch, now this is your "WORK SPACE" here your changes will not affect the master branch.
+	"git branch"command is to check your branches 
+	"git checkout BRANCH NAME" to switch branches
+
+step10: Now write "git add ." after this command your files is in staging area
+
+step11: Now write "git commit -m YOUR MESSAGE HERE" your msg should describe your changes in code, this will commit our changes or you can use git stash also, i want you to explore about git stash and use.
+
+step:12 After commit, make sure you pull latest code from server master to your local branch before pushing code "git pull origin master" 
+
+step13: Now if you want to push your code, write "git push" make sure you are in local branch not in master. Then it will ask you as shown below.
+		
+	nayaz@nayaz-virtual-machine:/opt/software/custportal$ git push
+	...........................
+	fatal: The current branch feature-62 has no upstream branch.
+	To push the current branch and set the remote as upstream, use
+    	git push --set-upstream origin feature-62 // COPY THIS AND PASTE AT BOTTOM & ENTER as shown below.
+	........................
+	nayaz@nayaz-virtual-machine:/opt/software/custportal$ git push --set-upstream origin feature-62
+	Username for 'https://gitlab.com': GIT USERNAME
+	Password for 'https://vna@gitlab.com':YOUR GIT PASSWORD
+	Enumerating objects: 36, done.
+	Counting objects: 100% (36/36), done.
+	Delta compression using up to 2 threads
+	Compressing objects: 100% (19/19), done.
+	Writing objects: 100% (19/19), 3.69 KiB | 472.00 KiB/s, done.
+	Total 19 (delta 15), reused 0 (delta 0)
+	remote:
+	remote: To create a merge request for feature-62, visit:
+	remote:   https://gitlab.com/sajukk/custportal/-/merge_requests/new?merge_request%5Bsource_branch%5D=feature-62 ============> COPY THIS URL AND PASTE IN BROWSER TAB	
+	remote:
+	To https://gitlab.com/sajukk/custportal.git
+ 	* [new branch]        feature-62 -> feature-62
+	Branch 'feature-62' set up to track remote branch 'feature-62' from 'origin'.
+	........................
+			
+	NOTE:
+	-----
+	Now in browser tab it will give you CREATE MERGE REQUEST option click on that and ask your git administrator to merge it to server master branch.
+	
+step14:	Once you got to know you local branch has got merged with server master branch from  administrator, you can delete your local branch using cmd "git branch -d BRANCH NAME" to force delete you can use '-D'. Then checkout to local master and pull latest code from server master branch to your local master branch then create new local feature branch as we discussed in step9 and you can start your work again. 
+
+step15: Optional: If you want to check your commits than use cmd "git log"
+
+step16: If you want to pull code from gitlab to your pc then write "git pull origin master" from local branch, if you are in local master branch use "git pull" cmd.
+
+NOTE:
+-------
+1. Only step9 to step14 we will repeat in regular code push.
+2. Make sure your are not pushing old code base. follow step12
+3. Make sure your are not repeating same local branches, every time create new. follow step9.
+
+cache password
+git config --global credential.helper "cache --timeout=604800"
+
+
+
+
+===================================
+
+
+1. clone the git repo
+	There is many way fo clonning
+	if you want to clone a specific branch then use $ git clone --branch=<BRANCH_NAME>
+	if you use only clone the main branch will be cloned.
+	In the case of gitlab, you have to use your password and username if the repo is not public
+	
+2. after cloning go to directory
+	
+	For example :
+	
+	if you cloned a git named XYZ then $ cd /to/the/directory/of/XYZ
+
+3. Then check, in which branch you are in using this command $git branch
+	
+	there will be one name if copied for the first time and a star will marked like this
+	
+	*main [ in the ubuntu terminal emulator there will be color also ]
+
+4. now add this directory to git config
+	
+	$ git config --global --add safe.directory /to/the/directory/of/XYZ
+	
+	for example
+	$ git config --global --add safe.directory /home/ron/ssd/programs/XYZ
+	
+5. Now create a local branch, This is needed as while pushing the code to the repo you want the other developer to test/ also sometime protected code doesn't give you the permission to push directly to the main / master branch
+	$ git switch -c new-branch
+	
+	after running this code check if you have switched or not using
+	
+	$ git branch
+	
+	*new-branch
+	main
+	
+	the output should be like that
+	
+6. do the changes and commit the changes
+	git commit -am "message" [ for adding the changes and commiting ] // while typing the message type in a certain way by which it is clean that what are the changes made to the repo 
+
+7. then pushing the code
+	
+	git push --set-upstream origin new-branch
+	
+	it might ask for password and username
+	
+	after giving that it should be pushes to a branch
+	from the web UI you can raise a merge request // gitlab
+	

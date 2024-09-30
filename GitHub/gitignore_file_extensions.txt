@@ -1,0 +1,11 @@
+
+# .gitignore is a folder to be made where we can save certain extension (*.log,*.class) to 
+# demand git to not add files with those extensions to the repository. 
+
+# This way we will be able to save space on the repository.
+
+# We can also add entire folders which git should not add to repo
+
+# necessary files can be removed by making .gitignore files and adding the extension
+
+------> https://github.com/github/gitignore <------
