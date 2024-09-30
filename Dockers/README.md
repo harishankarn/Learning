@@ -1,6 +1,6 @@
 # Docker Learning Hub 🐳
 
-![Docker Image](https://drive.google.com/uc?id=1SZHDMFVtYQB0PO1GQTc4wkwfVpKx73Rd)
+![](https://drive.google.com/uc?id=1SZHDMFVtYQB0PO1GQTc4wkwfVpKx73Rd)
 
 Welcome to my Docker learning hub! Here, I document my journey as I learn to use Docker for containerization and application deployment.
 
