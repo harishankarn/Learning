@@ -1,6 +1,6 @@
 # Learning GitHub
 
-![Alt text](https://drive.google.com/file/d/1j_mIeaoqOHPLOWhZPavDou7o6p95pAf5/view?usp=sharing)
+![Alt text](https://drive.google.com/uc?id=1j_mIeaoqOHPLOWhZPavDou7o6p95pAf5)
 
 ## Getting started
 
