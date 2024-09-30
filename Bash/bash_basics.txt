@@ -1,0 +1,12 @@
+# To comment multiple lines in vim
+
+	---> :[start line],[end line] s/^/#  <---
+
+# To uncomment multiple lines in vim 
+
+	---> :[start line],[end line] s/^#/ <---
+
+
+:: Always start a bash file with : !/bin/bash ::
+
+

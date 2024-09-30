@@ -1,0 +1,26 @@
+
+# Syntax for defining bash functions
+
+# MAKE SURE TO LEAVE A SPACE HERE
+		       ||
+	               \/ 
+function [function name] {
+
+ *content*
+}
+
+
+# Syntax to class the function
+
+[function name] "[parameter]"
+
+--------------------------------------------
+
+# To call specific parameter among many
+
+function [function name] {
+
+ echo $[parameter number]
+ }
+
+ [function name] "[parameter 1]" "[parameter 2]"

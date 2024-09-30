@@ -1,0 +1,5 @@
+ > To automatically commit and push the code to your GIT :
+
+ # Just run the auto_commit.sh file
+
+	./auto_commit.sh
