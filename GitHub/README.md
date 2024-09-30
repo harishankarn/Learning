@@ -1,6 +1,6 @@
 # Learning GitHub
 
-![Alt text](https://drive.google.com/uc?id=1j_mIeaoqOHPLOWhZPavDou7o6p95pAf5)
+![](https://drive.google.com/uc?id=1j_mIeaoqOHPLOWhZPavDou7o6p95pAf5)
 
 ## Getting started
 
