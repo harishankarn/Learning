@@ -1,0 +1,8 @@
+# We can pull different docker images for differing use cases
+# Each docker image can serve as the base on which we can run programs
+
+# There are docker images for specific programs, few examples are: 
+ -> docker images to run c or c++ programs
+ -> docker images to run certain files for games
+
+# You can pull images from : https://hub.docker.com/

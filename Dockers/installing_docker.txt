@@ -1,0 +1,30 @@
+# Instruction to install docker on debian
+
+# Advantages of using docker is that you can basically install a thin layer 
+# of the needed OS (basically the kernel) and you can add the only the 
+# necessary proprietary packages to run the programs with least 
+# amount of system usage
+
+# Steps to install
+
+1.remove pre exisiting docker files 
+ sudo apt-get remove docker docker-engine docker.io
+
+2.install docker
+ sudo apt-get update
+ sudo apt install docker.io
+
+3.check if docker is installed
+ docker --version
+
+4.install a basic docker image 
+ sudo docker run hello-world
+
+5.check if docker image has been pulled and is present 
+ sudo docker images
+
+6.To check all the container which were pulled
+ sudo docker ps -a 
+
+7.To check all the running containers
+ sudo docker ps
