@@ -64,11 +64,10 @@ car_node* delete_car_node(car_node* head)
 }
 
 int main(){
-	car_node *first=create_car_node("honda");
-	first->next_car=create_car_node("toyota");
+	/*first->next_car=create_car_node("toyota");
 	first->next_car->next_car=create_car_node("nissan");
 	first->next_car->next_car->next_car=create_car_node("mazda");
-	first->next_car->next_car->next_car->next_car=create_car_node("subaru");
+	first->next_car->next_car->next_car->next_car=create_car_node("subaru");*/
 
 	while(1){
 		printf("1.Create/Add \n");
@@ -78,8 +77,11 @@ int main(){
 		int choice;
 		scanf("%d",&choice);
 
+		car_node *first;
+
 		switch(choice){
 			case 1:{
+				car_node *first=create_car_node();
 				break;
 			}
 			
