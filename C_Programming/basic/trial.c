@@ -16,7 +16,7 @@ car_node *create_car_node(char *data){
 	return new_car_node;
 }
 
-void list_car_node(car_node *node_head){
+void read_car_node(car_node *node_head){
 	printf("list:\n");
     for( car_node *temp=node_head;temp!=NULL;temp=temp->next_car)
         printf("%s\n",temp->data);
@@ -24,9 +24,10 @@ void list_car_node(car_node *node_head){
 
 int main(){
 	car_node *first=create_car_node("honda");
-
 	first->next_car=create_car_node("toyota");
 	first->next_car->next_car=create_car_node("nissan");
+	first->next_car->next_car->next_car=create_car_node("mazda");
+	first->next_car->next_car->next_car->next_car=create_car_node("subaru");
 
 	list_car_node(first);
 
