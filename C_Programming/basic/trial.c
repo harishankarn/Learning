@@ -11,10 +11,10 @@ typedef struct car_node{
 // Joining the nodes into a singly linked list 
 car_node *create_car_node(char *carName){
 	car_node *new_car_node=( car_node *)malloc(sizeof( car_node));
-	strcpy(new_car_node->data,carName);
 
 	new_car_node->data=carName;
 	new_car_node->next_car=NULL;	
+
 
 	return new_car_node;
 }
