@@ -8,23 +8,13 @@ typedef struct car_node{
 
 }car_node;
 
-// Function to read car name
-char* read_car_name(){
-	
-	char *car_name = (char *)malloc(sizeof(char));;
-	printf("Enter car name:");
-	scanf("%s",car_name);
-
-	return car_name;
-}
-
 // Joining the nodes into a singly linked list 
-car_node *create_car_node(){
+car_node *create_car_node(char *carName){
 	car_node *new_car_node=( car_node *)malloc(sizeof( car_node));
-	//strcpy(new_car_node->data,data);
+	strcpy(new_car_node->data,carName);
 
-	new_car_node->data=read_car_name();
-	new_car_node->next_car=NULL;	    
+	new_car_node->data=carName;
+	new_car_node->next_car=NULL;	
 
 	return new_car_node;
 }
@@ -69,6 +59,8 @@ int main(){
 	first->next_car->next_car->next_car=create_car_node("mazda");
 	first->next_car->next_car->next_car->next_car=create_car_node("subaru");*/
 
+	car_node *first=NULL;
+
 	while(1){
 		printf("1.Create/Add \n");
 		printf("2.Delete last entry\n");
@@ -77,11 +69,17 @@ int main(){
 		int choice;
 		scanf("%d",&choice);
 
-		car_node *first;
-
 		switch(choice){
 			case 1:{
-				car_node *first=create_car_node();
+				char *car_name = (char *)malloc(sizeof(char));
+				printf("Enter car name:");
+				scanf("%s",car_name);
+				
+				first=create_car_node(car_name);
+			//	printf("%s\n",first);
+
+				//printf("%s\n",first->next_car->next_car);
+				//printf("%s\n",first->next_car->next_car->next_car);
 				break;
 			}
 			
