@@ -9,22 +9,32 @@ typedef struct car_node{
 }car_node;
 
 // Joining the nodes into a singly linked list 
-car_node *create_car_node(char *data){
+car_node *create_car_node(){
 	car_node *new_car_node=( car_node *)malloc(sizeof( car_node));
-    new_car_node->data=data;
+	//strcpy(new_car_node->data,data);
+
+	new_car_node->data=read_car_name();
+	new_car_node->next_car=NULL;	    
 
 	return new_car_node;
 }
 
 // Function to list all the cars
-void read_car_node(car_node *node_head){
-
-	for( car_node *temp=node_head;temp!=NULL;temp=temp->next_car)
+void read_car_node(car_node *head){
+	for( car_node *temp=head;temp!=NULL;temp=temp->next_car)
         printf("%s\n",temp->data);
 }
 
-// Fuction to add
-void add_car_node(car_node *){}
+// Function to read car name
+char read_car_name(){
+	
+	char *car_name = (char *)malloc(sizeof(char));;
+	printf("Enter car name:");
+	scanf("%s",car_name);
+
+	return car_name;
+}
+
 // Function to delete car
 car_node* delete_car_node(car_node* head)
 {
@@ -54,11 +64,11 @@ car_node* delete_car_node(car_node* head)
 }
 
 int main(){
-	car_node *first=create_car_node("honda");
+	/*car_node *first=create_car_node("honda");
 	first->next_car=create_car_node("toyota");
 	first->next_car->next_car=create_car_node("nissan");
 	first->next_car->next_car->next_car=create_car_node("mazda");
-	first->next_car->next_car->next_car->next_car=create_car_node("subaru");
+	first->next_car->next_car->next_car->next_car=create_car_node("subaru");*/
 
 	while(1){
 		printf("1.Create/Add \n");
