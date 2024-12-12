@@ -14,8 +14,7 @@ car_node *create_car_node(char *carName){
 
 	new_car_node->data=carName;
 	new_car_node->next_car=NULL;	
-
-
+	
 	return new_car_node;
 }
 
