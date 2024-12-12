@@ -18,14 +18,13 @@ car_node *create_car_node(char *data){
 
 // Function to list all the cars
 void read_car_node(car_node *node_head){
-    /*while(node_head!=NULL){	        
-		printf("%s\n",temp->data);
 
-	}*/
 	for( car_node *temp=node_head;temp!=NULL;temp=temp->next_car)
         printf("%s\n",temp->data);
 }
 
+// Fuction to add
+void add_car_node(car_node *){}
 // Function to delete car
 car_node* delete_car_node(car_node* head)
 {
@@ -60,29 +59,31 @@ int main(){
 	first->next_car->next_car=create_car_node("nissan");
 	first->next_car->next_car->next_car=create_car_node("mazda");
 	first->next_car->next_car->next_car->next_car=create_car_node("subaru");
-	
-	printf("1.Create/Add \n");
-	printf("2.Delete last entry\n");
-	printf("3.Print \n");
 
-	int choice;
-	scanf("%d",&choice);
+	while(1){
+		printf("1.Create/Add \n");
+		printf("2.Delete last entry\n");
+		printf("3.Print \n");
 
-	switch(choice){
-		case 1:{
-			break;
-		}
-		
-		case 2:{
-			printf("\nList after removing the last node: \n");
-			first = delete_car_node(first);
-			read_car_node(first);
-			break;
-		}
-		
-		case 3:{
-			read_car_node(first);
-			break;
+		int choice;
+		scanf("%d",&choice);
+
+		switch(choice){
+			case 1:{
+				break;
+			}
+			
+			case 2:{
+				printf("\nList after removing the last node: \n");
+				first = delete_car_node(first);
+				read_car_node(first);
+				break;
+			}
+			
+			case 3:{
+				read_car_node(first);
+				break;
+			}
 		}
 	}
 	return 0;

@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/harishankar/Documents/gitClone/Learning/C_Programming/basic/trial'
+relocations:     []
+...
