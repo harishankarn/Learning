@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc -o output trial.c
+gcc -o output garage.c
 ./output

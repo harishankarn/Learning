@@ -1,0 +1,65 @@
+﻿Type,Manufacturer,Brand,Price,Range
+Hatchbacks,Chevrolet,Spark,3.21,3.98
+Hatchbacks,Chevrolet,UVA,4.28,5.5
+Hatchbacks,Fiat,Palio stile,3.76,5.07
+Hatchbacks,Hyundai ,Getz Prime,4.18,6.56
+Hatchbacks,Hyundai ,Santro Xing,2.94,4.89
+Hatchbacks,Hyundai ,i10,3.58,5.44
+Hatchbacks,Maruti,Alto,2.53,3.28
+Hatchbacks,Maruti,800,2.1,2.52
+Hatchbacks,Maruti,WagonR,3.59,5.18
+Hatchbacks,Maruti,Zen Estilo,3.4,4.22
+Hatchbacks,Maruti,Swift,4.32,6.01
+Hatchbacks,Skoda,Fabia,7.04,9.13
+Hatchbacks,Tata,Indica,2.69,4.76
+Small Saloons,Chevrolet,Aveo,6.5,7.98
+Small Saloons,Chevrolet,SRV,7.7,8.95
+Small Saloons,Ford,Fiesta,6.37,9.52
+Small Saloons,Ford,Ikon,5.23,5.67
+Small Saloons,Hindustan ,Ambassador,4.29,6.82
+Small Saloons,Hyundai,Accent,5.48,6.19
+Small Saloons,Hyundai,Verna,6.84,8.76
+Small Saloons,Honda ,City ZX,7.91,10.19
+Small Saloons,Mahindra,Logan ,4.76,7.61
+Small Saloons,Maruti,Dzire,4.7,6.91
+Small Saloons,Maruti,SX4,6.78,8.16
+Small Saloons,Mitsubishi ,Lancer,6.99,7.89
+Small Saloons,Tata,Indigo CS,4.05,5.14
+Small Saloons,Tata,Indigo,4.89,7.02
+Mid - sizer,Chevrolet,optra Magnum,8.71,11.78
+Mid - sizer,Honda,civic,11.84,14.72
+Mid - sizer,Hyundai,Elantra,7.66,10.12
+Mid - sizer,Mitsubishi,Cedia,8.48,8.99
+Mid - sizer,Skoda,Octavia,12,16.56
+Mid - sizer,Toyota,Corolla,9.4,14.48
+Executive,Honda,Accord,16.2,20.86
+Executive,Hyundai ,Sonata embera,14.97,18.72
+Executive,Toyota,Camry,22.07,28.35
+Executive,Skoda,Laura/ Superb,21.78,26.4
+Executive,Audi ,4,27.56,32.81
+Executive,BMW 3,3 series,28.76,38.91
+Executive,VW ,Passat,22.35,27.86
+Executive,Nissan ,Teana,22.23,24.39
+MUV,Chevrolet,Tavera,6.42,10.88
+MUV,Mahindra,bolero,5.8,6.2
+MUV,Mahindra,Scorpio Getaway,7.9,8.1
+MUV,Tata,Sumo Vita,5.2,6.16
+MUV,Tata,Sumo Grande,6.7,7.68
+MUV,Toyota,Innova,7.5,12.2
+Niche,Ford ,Fusion,6.37,7.77
+Niche,Maini,Reva,3.5,4.65
+Niche,Maruti,Omni,2.5,2.75
+Niche,Maruti,Versa,3.93,5.64
+Niche,Tata,Indigo Marina,4.89,6.34
+SUV,Mahindra,Scorpio,7.9,10.2
+SUV,Mahindra,Scorpio Mhawk,11,12
+SUV,Honda,CRV,19,22.4
+SUV,Ford,Endeavour,15.9,18.7
+SUV,Chevrolet ,Captiva,18.62,
+SUV,Maruti,Gypsy,5.4,6.1
+SUV,Hyundai,Tucson,16.9,19.7
+SUV,Mitsubhishi,Pajero,19,onwards
+SUV,Nissan,Xtrail,21.65,29.4
+SUV,Suzuki,Grand Vitara,14.8,17.9
+SUV,Tata,Safari dicor,8.07,13.5
+SUV,Mitsubhishi,Montero,35,onwards
