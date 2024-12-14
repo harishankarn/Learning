@@ -4,10 +4,16 @@
 #include <string.h>
 
 // Defining car_node struct
-typedef struct car_node{
-	char *data; 
-	struct car_node *next_car;
 
+typedef struct car_details{
+	char *car_brand; // car name
+	char *car_price; // car price
+	char *car_manufacture; // car manufacture
+}car_details;
+
+typedef struct car_node{
+	car_details *data; 
+	struct car_node *next_car;
 }car_node;
 
 int check_empty_list(car_node *head){
