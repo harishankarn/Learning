@@ -2,9 +2,31 @@
 #include<stdlib.h> 
 #include <unistd.h> 
 #include <string.h>
+#include "topics/string_sorting.h"
 
-// Defining car_node struct
+// Defining node struct string_node
+typedef struct string_node{
+    char *node_data;
+    struct string_node *next_node;
+}string_node;
 
+void string_sorting(string_node *head){
+    char *temp;
+    string_node *current,*next;
+
+    for(current = head; current!=NULL;current=current->next_node){
+        for(next=current->next_node;next!=NULL;next=next->next_node){
+            if(strcmp(current->node_data,next->node_data)>0){
+                temp=current->node_data;
+                current->node_data=next->node_data;
+               next->node_data=temp;
+            }
+        }
+    }
+}
+
+
+// Defining car_details struct
 typedef struct car_details{
 	char *car_type; // car type
 	char *car_manufacture; // car manufacture
@@ -13,24 +35,11 @@ typedef struct car_details{
 	char *car_range; // car range
 }car_details;
 
+// Defining car_node struct
 typedef struct car_node{
 	car_details *car_data; 
 	struct car_node *next_car;
 }car_node;
-
-int check_list_validity(car_node *head,char *carName){
-	if(head==NULL){
-		printf("List is empty\n");
-		printf("Please create a list first\n");
-		sleep(2);
-		return 1;
-	}
-	else if(carName==NULL){
-		printf("Memory not allocated\n");
-		return 1;
-	}
-	return 0;
-}
 
 int read_csv_file(char *filename){
 	FILE* fp = fopen(filename, "r");
@@ -82,12 +91,12 @@ int read_csv_file(char *filename){
 
 // (Create)
 // Creates a node 
-car_node *create_car_node(car_details *carName){
+car_node *create_car_node(car_details *carDetails){
 	car_node *new_car_node=( car_node *)malloc(sizeof( car_node));
-
-	new_car_node->car_data=carName;
-	new_car_node->next_car=NULL;	
-
+	
+	new_car_node->car_data=carDetails;
+	new_car_node->next_car=NULL;
+	
 	return new_car_node;
 }
 
@@ -99,11 +108,11 @@ void read_car_node(car_node *head){
 
  
 	for( car_node *temp=head;temp!=NULL;temp=temp->next_car){
+		printf("Car Type: %s\n", temp->car_data->car_type);
+        printf("Car Manufacture: %s\n", temp->car_data->car_manufacture);
         printf("Car Brand: %s\n", temp->car_data->car_brand);
         printf("Car Price: %s\n", temp->car_data->car_price);
         printf("Car Range: %s\n", temp->car_data->car_range);
-        printf("Car Type: %s\n", temp->car_data->car_type);
-        printf("Car Manufacture: %s\n", temp->car_data->car_manufacture);
 	}
 	printf("--------------------\n\n");
 }	
@@ -159,7 +168,7 @@ car_node* last_car_node_delete(car_node* head)
 }
 
 //Function to delete car according to name
-car_node* delete_car_node_by_name(car_node* head, car_details* carName){
+car_node* delete_car_node_by_name(car_node* head, char* carName){
 	// If the list is empty, return NULL
 	if (head == NULL) {
 		return NULL;
@@ -174,26 +183,39 @@ car_node* delete_car_node_by_name(car_node* head, car_details* carName){
 	car_node* current = head;
 	car_node* previous = NULL;
 
-	if (strcmp(current->car_data, carName) == 0){
+	if (strcmp(current->car_data->car_brand, carName) == 0){
 		head = current->next_car;
+		free(current->car_data->car_type);
+		free(current->car_data->car_manufacture);
+		free(current->car_data->car_brand);
+		free(current->car_data->car_price);
+		free(current->car_data->car_range);
+		free(current->car_data);
 		free(current);
 		return head;
 
 	}
 
-    while (current != NULL && strcmp(current->car_data, carName) != 0) {
+    while (current != NULL && strcmp(current->car_data->car_brand, carName) != 0) {
 		previous = current;
         current = current->next_car;
     }
 
 	previous->next_car = current->next_car;
+	free(current->car_data->car_type);
+	free(current->car_data->car_manufacture);
+	free(current->car_data->car_brand);
+	free(current->car_data->car_price);
+	free(current->car_data->car_range);
+	free(current->car_data);
+	free(current);
   	return head;
 }
 
 // Main function
 int main(){
 
-	car_node *first=NULL;
+	car_node *head=NULL;
 
 	while(1){
 
@@ -205,6 +227,7 @@ int main(){
 		printf("4.Delete last entry\n");
 		printf("5.Delete any entry based on name\n");
 		printf("6.Read from csv file\n");
+		printf("7.Sort the list in alphabetic order\n");
 		printf("--------------------\n");
 
 		int choice=0;
@@ -220,68 +243,104 @@ int main(){
 		switch(choice){
 			case 1:{
 				printf("\nCreating new list\n");
-				char *carName = (char *)malloc(100*sizeof(char));
+				car_details *new_car_data = (car_details *)malloc(100*sizeof(car_details));
 
-				if (check_list_validity(NULL,carName)) // Checks if memory is allocated
-					break;
+				new_car_data->car_type = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_manufacture = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_brand = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_price = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_range = (char *)malloc(100 * sizeof(char));
 
-				printf("Enter car name:");
-				scanf("%s",carName);
-				first=create_car_node(carName);
+				printf("Enter car type:");
+				scanf("%99s", new_car_data->car_type);
+				printf("Enter car manufacture:");
+				scanf("%99s", new_car_data->car_manufacture);
+				printf("Enter car brand:");
+				scanf("%99s", new_car_data->car_brand);
+				printf("Enter car price:");
+				scanf("%99s", new_car_data->car_price);
+				printf("Enter car range:");
+				scanf("%99s", new_car_data->car_range);
+
+				head=create_car_node(new_car_data);
+
+				printf("--------------------\n");
+
+				printf("Car Type: %s\n", head->car_data->car_type);
+				printf("Car Manufacture: %s\n", head->car_data->car_manufacture);
+				printf("Car Brand: %s\n", head->car_data->car_brand);
+				printf("Car Price: %s\n", head->car_data->car_price);
+				printf("Car Range: %s\n", head->car_data->car_range);
+				sleep(2);
+
+				free(head->car_data->car_type);
+				free(head->car_data->car_manufacture);
+				free(head->car_data->car_brand);
+				free(head->car_data->car_price);
+				free(head->car_data->car_range);
+				free(head->car_data);
+				free(head);
+
 				break;
 			}
 			
 			case 2:{
-				char *carName = (char *)malloc(100*sizeof(char));
+				car_details *new_car_data = (car_details *)malloc(100*sizeof(car_details));
 
-				if (check_list_validity(NULL,carName)) // Checks if memory is allocated
+				if (new_car_data==NULL){ // Checks if memory is allocated
+					printf("Memory not allocated\n");
 					break;
+				}
 
-				if (check_list_validity(first,NULL)) // Checks if list is empty
-					break;
+				/**/
 
-				printf("\nAdding to existing list\n");
-				printf("Enter car name:");
-				scanf("%s",carName);
-				end_insert( first,carName);
+				new_car_data->car_type = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_manufacture = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_brand = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_price = (char *)malloc(100 * sizeof(char));
+				new_car_data->car_range = (char *)malloc(100 * sizeof(char));
+
+				printf("Enter car type:");
+				scanf("%99s", new_car_data->car_type);
+				printf("Enter car manufacture:");
+				scanf("%99s", new_car_data->car_manufacture);
+				printf("Enter car brand:");
+				scanf("%99s", new_car_data->car_brand);
+				printf("Enter car price:");
+				scanf("%99s", new_car_data->car_price);
+				printf("Enter car range:");
+				scanf("%99s", new_car_data->car_range);
+				head = end_insert( head,new_car_data);
 				break;	
 			}
 			
 			case 3:{
-				if (check_list_validity(first,NULL)) // Checks if list is empty
-					break;
+				
 
-				read_car_node(first);
+				read_car_node(head);
 				sleep(2);
 				break;
 			}
 
 			case 4:{
-				if (check_list_validity(first,NULL)) // Checks if list is empty
-					break;
+				
 				
 				printf("\nList after removing the last node: \n");
-				first = last_car_node_delete(first);
-				read_car_node(first);
+				head = last_car_node_delete(head);
+				read_car_node(head);
 				sleep(2);
 				break;
 			}
 
 			case 5:{
 
-				if (check_list_validity(first,NULL)) // Checks if list is empty
-					break;
-
 				char *carName = (char *)malloc(100*sizeof(char));
-
-				if (check_list_validity(NULL,carName)) // Checks if list is empty
-					break;
 
 				printf("Enter car name:");
 				scanf("%99s",carName);
 				printf("\nList after removing the node with name %s: \n", carName);
-				first = delete_car_node_by_name(first, carName);
-				read_car_node(first);
+				head = delete_car_node_by_name(head, carName);
+				read_car_node(head);
 				free(carName);
 				sleep(2);
 				break;
@@ -289,6 +348,15 @@ int main(){
 
 			case 6:{
 				read_csv_file("mycarlist.csv");
+				break;
+			}
+
+			case 7:{
+				
+
+				string_sorting(head);
+				read_car_node(head);
+				sleep(2);
 				break;
 			}
 

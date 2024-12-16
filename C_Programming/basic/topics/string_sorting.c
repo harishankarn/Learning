@@ -1,23 +1,14 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include <string.h>
+#include "string_sorting.h"
 
-// Defining node struct
-typedef struct string_node{
-    char *node_data;
-    struct string_node *next_node;
-}string_node;
 
-string_node* create_new_node(){
-    string_node *new_node=(string_node *)mallac(sizeof(string_node));
-
-    new_node->node_data=NULL;
-    new_node->next_node=NULL;
-
-    return new_node;
-}
-
+/*
 int main(){
-    string_node *head = NULL;
+    string_node *head = create_new_node("Carrot");
+    
+    head->next_node = create_new_node("World");
+    head->next_node->next_node = create_new_node("Apple");
+    head->next_node->next_node->next_node = create_new_node("Dog");
+    head->next_node->next_node->next_node->next_node = create_new_node("Hello");
+    head->next_node->next_node->next_node->next_node->next_node = create_new_node("Banana");
     return 0;
-}
+}*/
