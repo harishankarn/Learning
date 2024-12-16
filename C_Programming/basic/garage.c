@@ -2,11 +2,10 @@
 #include<stdlib.h> 
 #include <unistd.h> 
 #include <string.h>
-#include "topics/string_sorting.h"
 
 // Defining node struct string_node
 typedef struct string_node{
-    char *node_data;
+    char *car_data;
     struct string_node *next_node;
 }string_node;
 
@@ -25,16 +24,21 @@ typedef struct car_node{
 	struct car_node *next_car;
 }car_node;
 
-void string_sorting(string_node *head){
-    char *temp;
-    string_node *current,*next;
+void wait_for_enter() {
+    printf("Press Enter to continue...");
+    while (getchar() != '\n');
+}
 
-    for(current = head; current!=NULL;current=current->next_node){
-        for(next=current->next_node;next!=NULL;next=next->next_node){
-            if(strcmp(current->node_data,next->node_data)>0){
-                temp=current->node_data;
-                current->node_data=next->node_data;
-               next->node_data=temp;
+void string_sorting(car_node *head){
+    car_details *temp;
+    car_node *current,*next;
+
+    for(current = head; current!=NULL;current=current->next_car){
+        for(next=current->next_car;next!=NULL;next=next->next_car){
+            if(strcmp(current->car_data->car_brand,next->car_data->car_brand)>0){
+                temp=current->car_data;
+                current->car_data=next->car_data;
+               next->car_data=temp;
             }
         }
     }
@@ -78,7 +82,7 @@ int read_csv_file(char *filename){
 			car_data->car_range = strdup(token);
 	        token = strtok(NULL, ",");
 		}
-		printf("Car Type: %s, Manufacture: %s, Brand: %s, Price: %s, Range: %s\n",
+		printf("Car Type: %s, Manufacture: %s, name: %s, Price: %s, Range: %s\n",
                car_data->car_type,
                car_data->car_manufacture,
                car_data->car_brand,
@@ -108,17 +112,19 @@ car_node *create_car_node(car_details *carDetails){
 // Function to list all the cars
 void read_car_node(car_node *head){
 	printf("--------------------\n");
-	printf("Cars in the list are:\n");
+	printf("Cars in the list are:\n\n");
 
  
 	for( car_node *temp=head;temp!=NULL;temp=temp->next_car){
+		
 		printf("Car Type: %s\n", temp->car_data->car_type);
         printf("Car Manufacture: %s\n", temp->car_data->car_manufacture);
-        printf("Car Brand: %s\n", temp->car_data->car_brand);
+        printf("Car name: %s\n", temp->car_data->car_brand);
         printf("Car Price: %s\n", temp->car_data->car_price);
         printf("Car Range: %s\n", temp->car_data->car_range);
+		printf("--------------------\n\n");
 	}
-	printf("--------------------\n\n");
+	
 }	
 
 
@@ -223,8 +229,8 @@ int main(){
 
 	while(1){
 
-		//system("clear");
-		printf("--------------------\n");
+		system("clear");
+		printf("\n--------------------\n");
 		printf("1.Create new list\n");
 		printf("2.Add to existing list\n");
 		printf("3.Print \n");
@@ -240,7 +246,7 @@ int main(){
 		if (scanf("%d%c",&choice,&check) != 2 || choice<=0 || check != '\n'){ // check for valid input
 			printf("Invalid input\n");
 			while (getchar() != '\n'); // clear input buffer
-			sleep(2);
+			wait_for_enter();
 			continue;
 		}
 
@@ -263,7 +269,7 @@ int main(){
 				scanf("%99s", new_car_data->car_type);
 				printf("Enter car manufacture:");
 				scanf("%99s", new_car_data->car_manufacture);
-				printf("Enter car brand:");
+				printf("Enter car name:");
 				scanf("%99s", new_car_data->car_brand);
 				printf("Enter car price:");
 				scanf("%99s", new_car_data->car_price);
@@ -276,18 +282,11 @@ int main(){
 
 				printf("Car Type: %s\n", head->car_data->car_type);
 				printf("Car Manufacture: %s\n", head->car_data->car_manufacture);
-				printf("Car Brand: %s\n", head->car_data->car_brand);
+				printf("Car name: %s\n", head->car_data->car_brand);
 				printf("Car Price: %s\n", head->car_data->car_price);
 				printf("Car Range: %s\n", head->car_data->car_range);
-				sleep(2);
-
-				free(head->car_data->car_type);
-				free(head->car_data->car_manufacture);
-				free(head->car_data->car_brand);
-				free(head->car_data->car_price);
-				free(head->car_data->car_range);
-				free(head->car_data);
-				free(head);
+				printf("--------------------\n");
+				wait_for_enter();
 
 				break;
 			}
@@ -312,7 +311,7 @@ int main(){
 				scanf("%99s", new_car_data->car_type);
 				printf("Enter car manufacture:");
 				scanf("%99s", new_car_data->car_manufacture);
-				printf("Enter car brand:");
+				printf("Enter car name:");
 				scanf("%99s", new_car_data->car_brand);
 				printf("Enter car price:");
 				scanf("%99s", new_car_data->car_price);
@@ -326,22 +325,22 @@ int main(){
 				
 				if (head == NULL) { // Checks if list is empty
                     printf("List is empty\n");
-                    sleep(2);
+                    wait_for_enter();
                     break;
                 }
-				
+
 				read_car_node(head);
-				sleep(2);
+				wait_for_enter();
 				break;
 			}
 
 			case 4:{
 				
-				
-				printf("\nList after removing the last node: \n");
 				head = last_car_node_delete(head);
+
+				printf("\nList after removing the last node: \n");
 				read_car_node(head);
-				sleep(2);
+				wait_for_enter();
 				break;
 			}
 
@@ -354,8 +353,7 @@ int main(){
 				printf("\nList after removing the node with name %s: \n", carName);
 				head = delete_car_node_by_name(head, carName);
 				read_car_node(head);
-				free(carName);
-				sleep(2);
+				wait_for_enter();
 				break;
 			}
 
@@ -369,13 +367,13 @@ int main(){
 
 				string_sorting(head);
 				read_car_node(head);
-				sleep(2);
+				wait_for_enter();
 				break;
 			}
 
 			default:{
 				printf("Invalid input\n");
-				sleep(2);
+				wait_for_enter();
 			}
 		}
 		
