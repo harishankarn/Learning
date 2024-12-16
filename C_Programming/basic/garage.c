@@ -10,22 +10,6 @@ typedef struct string_node{
     struct string_node *next_node;
 }string_node;
 
-void string_sorting(string_node *head){
-    char *temp;
-    string_node *current,*next;
-
-    for(current = head; current!=NULL;current=current->next_node){
-        for(next=current->next_node;next!=NULL;next=next->next_node){
-            if(strcmp(current->node_data,next->node_data)>0){
-                temp=current->node_data;
-                current->node_data=next->node_data;
-               next->node_data=temp;
-            }
-        }
-    }
-}
-
-
 // Defining car_details struct
 typedef struct car_details{
 	char *car_type; // car type
@@ -40,6 +24,21 @@ typedef struct car_node{
 	car_details *car_data; 
 	struct car_node *next_car;
 }car_node;
+
+void string_sorting(string_node *head){
+    char *temp;
+    string_node *current,*next;
+
+    for(current = head; current!=NULL;current=current->next_node){
+        for(next=current->next_node;next!=NULL;next=next->next_node){
+            if(strcmp(current->node_data,next->node_data)>0){
+                temp=current->node_data;
+                current->node_data=next->node_data;
+               next->node_data=temp;
+            }
+        }
+    }
+}
 
 int read_csv_file(char *filename){
 	FILE* fp = fopen(filename, "r");
@@ -93,6 +92,11 @@ int read_csv_file(char *filename){
 // Creates a node 
 car_node *create_car_node(car_details *carDetails){
 	car_node *new_car_node=( car_node *)malloc(sizeof( car_node));
+
+	if (new_car_node == NULL) {
+        printf("Memory not allocated for car_node\n");
+        return NULL;
+    }
 	
 	new_car_node->car_data=carDetails;
 	new_car_node->next_car=NULL;
@@ -244,6 +248,10 @@ int main(){
 			case 1:{
 				printf("\nCreating new list\n");
 				car_details *new_car_data = (car_details *)malloc(100*sizeof(car_details));
+				if (new_car_data == NULL) {
+                    printf("Memory not allocated for car_details\n");
+                    break;
+                }
 
 				new_car_data->car_type = (char *)malloc(100 * sizeof(char));
 				new_car_data->car_manufacture = (char *)malloc(100 * sizeof(char));
@@ -316,7 +324,12 @@ int main(){
 			
 			case 3:{
 				
-
+				if (head == NULL) { // Checks if list is empty
+                    printf("List is empty\n");
+                    sleep(2);
+                    break;
+                }
+				
 				read_car_node(head);
 				sleep(2);
 				break;
