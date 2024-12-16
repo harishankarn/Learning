@@ -25,7 +25,8 @@ typedef struct car_node{
 }car_node;
 
 void wait_for_enter() {
-    printf("Press Enter to continue...");
+    printf("\nPress Enter to continue...");
+	getchar();
     while (getchar() != '\n');
 }
 
@@ -42,54 +43,6 @@ void string_sorting(car_node *head){
             }
         }
     }
-}
-
-int read_csv_file(char *filename){
-	FILE* fp = fopen(filename, "r");
-	if(!fp){
-		printf("Error opening file\n");
-		return 0;
-	}
-
-	char csv_row[256];
-	while(fgets(csv_row,sizeof(csv_row),fp)){
-
-		car_details *car_data = (car_details *)malloc(sizeof(car_details));
-		if(!car_data){
-			printf("Memory not allocated\n");
-			return 0;
-		}
-
-		char *token = strtok(csv_row, ",");
-		
-        if (token) {
-			car_data->car_type = strdup(token); // Use strdup to duplicate token
-	        token = strtok(NULL, ",");
-		}
-        if (token) {
-			car_data->car_manufacture = strdup(token);
-	        token = strtok(NULL, ",");
-		}
-        if (token) {
-			car_data->car_brand = strdup(token);
-	        token = strtok(NULL, ",");
-		}
-        if (token) {
-			car_data->car_price = strdup(token);
-	        token = strtok(NULL, ",");
-		}
-        if (token) {
-			car_data->car_range = strdup(token);
-	        token = strtok(NULL, ",");
-		}
-		printf("Car Type: %s, Manufacture: %s, name: %s, Price: %s, Range: %s\n",
-               car_data->car_type,
-               car_data->car_manufacture,
-               car_data->car_brand,
-               car_data->car_price,
-               car_data->car_range);
-	}
-	return 0;
 }
 
 // (Create)
@@ -122,7 +75,7 @@ void read_car_node(car_node *head){
         printf("Car name: %s\n", temp->car_data->car_brand);
         printf("Car Price: %s\n", temp->car_data->car_price);
         printf("Car Range: %s\n", temp->car_data->car_range);
-		printf("--------------------\n\n");
+		printf("\n--------------------\n\n");
 	}
 	
 }	
@@ -222,6 +175,56 @@ car_node* delete_car_node_by_name(car_node* head, char* carName){
   	return head;
 }
 
+int read_csv_file(char *filename,car_node *head){
+	FILE* fp = fopen(filename, "r");
+	if(!fp){
+		printf("Error opening file\n");
+		return 0;
+	}
+
+	char csv_row[256];
+	while(fgets(csv_row,sizeof(csv_row),fp)){
+
+		car_details *car_data = (car_details *)malloc(sizeof(car_details));
+		if(!car_data){
+			printf("Memory not allocated\n");
+			return 0;
+		}
+
+		char *token = strtok(csv_row, ",");
+		
+        if (token) {
+			car_data->car_type = strdup(token); // Use strdup to duplicate token
+	        token = strtok(NULL, ",");
+		}
+        if (token) {
+			car_data->car_manufacture = strdup(token);
+	        token = strtok(NULL, ",");
+		}
+        if (token) {
+			car_data->car_brand = strdup(token);
+	        token = strtok(NULL, ",");
+		}
+        if (token) {
+			car_data->car_price = strdup(token);
+	        token = strtok(NULL, ",");
+		}
+        if (token) {
+			car_data->car_range = strdup(token);
+		}
+		/*printf("Car Type: %s, Manufacture: %s, name: %s, Price: %s, Range: %s\n",
+               car_data->car_type,
+               car_data->car_manufacture,
+               car_data->car_brand,
+               car_data->car_price,
+               car_data->car_range);*/
+
+		head = end_insert(head, car_data);
+
+	}
+	return 0;
+}
+
 // Main function
 int main(){
 
@@ -285,7 +288,7 @@ int main(){
 				printf("Car name: %s\n", head->car_data->car_brand);
 				printf("Car Price: %s\n", head->car_data->car_price);
 				printf("Car Range: %s\n", head->car_data->car_range);
-				printf("--------------------\n");
+				printf("--------------------");
 				wait_for_enter();
 
 				break;
@@ -329,7 +332,8 @@ int main(){
                     break;
                 }
 
-				read_car_node(head);
+				read_car_node(head); 
+				getchar();
 				wait_for_enter();
 				break;
 			}
@@ -358,7 +362,15 @@ int main(){
 			}
 
 			case 6:{
-				read_csv_file("mycarlist.csv");
+				if (head == NULL) { // Checks if list is empty
+                    printf("List is empty\nPlease create a list first\n");
+					getchar();
+                    wait_for_enter();
+                    break;
+                }
+				read_csv_file("mycarlist.csv",head);
+				printf("\nCars have been added to the list");
+				wait_for_enter();
 				break;
 			}
 
