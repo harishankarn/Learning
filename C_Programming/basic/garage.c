@@ -30,19 +30,28 @@ void wait_for_enter() {
     while (getchar() != '\n');
 }
 
+void swap(car_details **a, car_details **b) {
+    car_details *temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 void string_sorting(car_node *head){
     car_details *temp;
     car_node *current,*next;
 
+	// Bubble sort
+	
     for(current = head; current!=NULL;current=current->next_car){
         for(next=current->next_car;next!=NULL;next=next->next_car){
             if(strcmp(current->car_data->car_brand,next->car_data->car_brand)>0){
-                temp=current->car_data;
-                current->car_data=next->car_data;
-               next->car_data=temp;
+                swap(&current->car_data,&next->car_data);
             }
         }
     }
+
+    // Quick sort
+	
 }
 
 // (Create)
